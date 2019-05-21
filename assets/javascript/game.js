@@ -23,3 +23,25 @@ var usedKeys = [];
 // Current Word:  _ _ _ _ _ _ //changing string
 /* Word Logic: */
 
+// Initialize on fresh game
+// Display a new empty word
+
+
+//WHILE WORD-Boolean.includes(false)
+
+    // Record keys pressed,
+    // Check if it is correct
+        /*
+            Array of false values, change to true if correct.
+            Change string if correct.
+
+            If incorrect, decrement tries, insert key into USED
+        */
+
+
+//End of Game: 
+    //If won: increment win       //else do nothing
+    //Reset Game (dont reset wins)
+
+
+
