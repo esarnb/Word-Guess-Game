@@ -59,11 +59,16 @@ document.onkeypress = function(pressed){
         if (guessCount > 1) guessCount--;
         else {
             /*User Lost! Reset variables (except win) and play again*/
+            alert("You lost :c")
         }
     }
     usedKeys.push(pressed);
-
-    updateElements()
+    if (!hiddenWord.includes("_")) {
+        winCount++;
+        updateElements();
+        alert("You Win!");
+    } else updateElements();
+    
 };
 
 /**
