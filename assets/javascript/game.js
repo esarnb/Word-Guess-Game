@@ -11,17 +11,21 @@ var potentialWords = ["Alpha", "Beta", "Theta", "Kappa", "Omega"];
 var winCount = 0;
 /* Number of guesses remaining */
 var guessCount;
-/* Letters of keys guessed [User hould not be punished twice] */
+/* Letters of keys guessed [User should not be punished twice] */
 var usedKeys;
 /* Get a random word from the potentials list */
 var randomWord;
 
 function initializer() {
+    //Get new Random Word
     randomWord = potentialWords[Math.floor(Math.random() * potentialWords.length)].toLowerCase();
+    //Reset hiddenWord letters to zero
     hiddenWord = [];
+    //Reset used keys to none
     usedKeys = [];
+    //Initial counter for amount of tries
     guessCount = 12;
-    /* Initialize Word underscores */
+    /* Initialize new hidden Word underscores */
     for (var i = 0; i < randomWord.length; i++) { hiddenWord.push("_") }
 }
 
@@ -38,28 +42,39 @@ updateElements();
 
 /* Load in key logger*/
 document.onkeypress = function(pressed){
-    // pressed = String.fromCharCode(event.keyCode).toLowerCase();
-    pressed = pressed.key;
-    console.log(pressed);
-    if (!usedKeys.includes(pressed)) {
-        if (randomWord.includes(pressed)) {
-            console.log("TRUE");
-            for (var i = 0; i < randomWord.length; i++) {
+    //Filter out excess data, only use letter pressed
+    pressed = pressed.key; 
+
+    //If the letter has not been pressed yet
+    if (!usedKeys.includes(pressed)) { 
+
+        //If the letter is in the hidden word (randomWord)
+        if (randomWord.includes(pressed)) { 
+
+            //Iterate through the random/hidden to uncover the letter
+            for (var i = 0; i < randomWord.length; i++) { 
+
                 if (randomWord.charAt(i) === pressed) {
                     hiddenWord[i] = pressed;
-                    document.getElementById("WORD").innerHTML = hiddenWord;
+                    document.getElementById("WORD").innerHTML = hiddenWord; //Update found letters
                 }
             }
         }
-        else {
-            console.log("FALSE");
-            if (guessCount > 1) guessCount--;
+
+
+        /** Incorrect key hit, decrement tries left */ 
+        else { 
+            if (guessCount > 1) guessCount--; 
             else {
-                /*User Lost! Reset variables (except win) and play again*/
+                /*User Lost the round! Reset variables (except wins) and play again*/
                 initializer();
             }
         }
+
+        /** Update used keys bank after every keypress */
         usedKeys.push(pressed);
+
+        /** User found all the letters: increment wins, reset, and update. */
         if (!hiddenWord.includes("_")) {
             winCount++;
             alert("You Win!");
@@ -67,29 +82,4 @@ document.onkeypress = function(pressed){
         } 
         updateElements();
     }
-    
 };
-
-/**
- * Remaining pseudocode
- */
-
-
-//WHILE WORD-Boolean.includes("_")
-
-    // Record keys pressed,
-    // Check if it is correct
-        /*
-            Array of false values, change to true if correct.
-            Change string if correct.
-
-            If incorrect, decrement tries, insert key into USED
-        */
-
-
-//End of Game: 
-    //If won: increment win       //else do nothing
-    //Reset Game (dont reset wins)
-
-
-
