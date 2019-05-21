@@ -28,6 +28,10 @@ var usedKeys = [];
 var randomWord = potentialWords[Math.floor(Math.random() * potentialWords.length)];
 document.write(randomWord);
 
+document.onkeypress = function(pressed){
+    usedKeys.push(String.fromCharCode(event.keyCode))
+    document.getElementById("KeyPress").innerHTML = usedKeys;
+};
 //WHILE WORD-Boolean.includes(false)
 
     // Record keys pressed,
