@@ -9,32 +9,32 @@ var potentialWords = ["Alpha", "Beta", "Theta", "Kappa", "Omega"];
 
 /* Wins variable */
 var winCount = 0;
-
 /* Number of guesses remaining */
-var guessCount = 12;
-
+var guessCount;
 /* Letters of keys guessed [User hould not be punished twice] */
-var usedKeys = [];
-
+var usedKeys;
 /* Get a random word from the potentials list */
-var randomWord = potentialWords[Math.floor(Math.random() * potentialWords.length)].toLowerCase();
+var randomWord;
 
-/* Initialize Word Boolean */
-let hiddenWord = [];
-for (var i = 0; i < randomWord.length; i++) { hiddenWord.push("_") }
+function initializer() {
+    randomWord = potentialWords[Math.floor(Math.random() * potentialWords.length)].toLowerCase();
+    hiddenWord = [];
+    usedKeys = [];
+    guessCount = 12;
+    /* Initialize Word underscores */
+    for (var i = 0; i < randomWord.length; i++) { hiddenWord.push("_") }
+}
 
 function updateElements() {
     document.getElementById("Wins").innerHTML = "Wins: " + winCount;
-    
     document.getElementById("Guesses").innerHTML = "Guesses Left: " + guessCount;
-    
     document.getElementById("Used").innerHTML = "Keys Used: " + usedKeys;
-    
     document.getElementById("WORD").innerHTML = hiddenWord.join(" ");
 }
 
-document.write(randomWord)
+initializer();
 updateElements();
+
 
 /* Load in key logger*/
 document.onkeypress = function(pressed){
@@ -44,9 +44,7 @@ document.onkeypress = function(pressed){
     
     if (randomWord.includes(pressed) && !usedKeys.includes(pressed)) {
         console.log("TRUE");
-        
         for (var i = 0; i < randomWord.length; i++) {
-            
             if (randomWord.charAt(i) === pressed) {
                 hiddenWord[i] = pressed;
                 document.getElementById("WORD").innerHTML = hiddenWord;
@@ -55,7 +53,6 @@ document.onkeypress = function(pressed){
     }
     else {
         console.log("FALSE");
-        
         if (guessCount > 1) guessCount--;
         else {
             /*User Lost! Reset variables (except win) and play again*/
@@ -65,9 +62,10 @@ document.onkeypress = function(pressed){
     usedKeys.push(pressed);
     if (!hiddenWord.includes("_")) {
         winCount++;
-        updateElements();
         alert("You Win!");
-    } else updateElements();
+        initializer();
+    } 
+    updateElements();
     
 };
 
