@@ -57,6 +57,7 @@ document.onkeypress = function(pressed){
         else {
             /*User Lost! Reset variables (except win) and play again*/
             alert("You lost :c")
+            initializer();
         }
     }
     usedKeys.push(pressed);
