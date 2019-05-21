@@ -4,35 +4,74 @@
  * By: Esar Behlum
  */
 
-//  List of potential words to use
-
+/*  List of potential words to use */
 var potentialWords = ["Alpha", "Beta", "Theta", "Kappa", "Omega"];
 
-// Wins variable //array
-
+/* Wins variable */
 var winCount = 0;
 
-// Number of guesses remaining //variable
-
+/* Number of guesses remaining */
 var guessCount = 12;
 
-// Letters of keys guessed [User hould not be punished twice] //array
-
+/* Letters of keys guessed [User hould not be punished twice] */
 var usedKeys = [];
 
-// Current Word:  _ _ _ _ _ _ //changing string
-/* Word Logic: */
+/* Get a random word from the potentials list */
+var randomWord = potentialWords[Math.floor(Math.random() * potentialWords.length)].toLowerCase();
 
-// Initialize on fresh game
-// Display a new empty word
-var randomWord = potentialWords[Math.floor(Math.random() * potentialWords.length)];
-document.write(randomWord);
+/* Initialize Word Boolean */
+let hiddenWord = [];
+for (var i = 0; i < randomWord.length; i++) { hiddenWord.push("_") }
 
+function updateElements() {
+    document.getElementById("Wins").innerHTML = "Wins: " + winCount;
+    
+    document.getElementById("Guesses").innerHTML = "Guesses Left: " + guessCount;
+    
+    document.getElementById("Used").innerHTML = "Keys Used: " + usedKeys;
+    
+    document.getElementById("WORD").innerHTML = hiddenWord.join(" ");
+}
+
+document.write(randomWord)
+updateElements();
+
+/* Load in key logger*/
 document.onkeypress = function(pressed){
-    usedKeys.push(String.fromCharCode(event.keyCode))
-    document.getElementById("KeyPress").innerHTML = usedKeys;
+    // pressed = String.fromCharCode(event.keyCode).toLowerCase();
+    pressed = pressed.key;
+    console.log(pressed);
+    
+    if (randomWord.includes(pressed) && !usedKeys.includes(pressed)) {
+        console.log("TRUE");
+        
+        for (var i = 0; i < randomWord.length; i++) {
+            
+            if (randomWord.charAt(i) === pressed) {
+                hiddenWord[i] = pressed;
+                document.getElementById("WORD").innerHTML = hiddenWord;
+            }
+        }
+    }
+    else {
+        console.log("FALSE");
+        
+        if (guessCount > 1) guessCount--;
+        else {
+            /*User Lost! Reset variables (except win) and play again*/
+        }
+    }
+    usedKeys.push(pressed);
+
+    updateElements()
 };
-//WHILE WORD-Boolean.includes(false)
+
+/**
+ * Remaining pseudocode
+ */
+
+
+//WHILE WORD-Boolean.includes("_")
 
     // Record keys pressed,
     // Check if it is correct
