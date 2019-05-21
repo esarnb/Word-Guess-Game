@@ -28,7 +28,7 @@ function initializer() {
 function updateElements() {
     document.getElementById("Wins").innerHTML = "Wins: " + winCount;
     document.getElementById("Guesses").innerHTML = "Guesses Left: " + guessCount;
-    document.getElementById("Used").innerHTML = "Keys Used: " + usedKeys;
+    document.getElementById("Used").innerHTML = "Keys Used: " + usedKeys.join(" ");
     document.getElementById("WORD").innerHTML = hiddenWord.join(" ");
 }
 
@@ -41,32 +41,32 @@ document.onkeypress = function(pressed){
     // pressed = String.fromCharCode(event.keyCode).toLowerCase();
     pressed = pressed.key;
     console.log(pressed);
-    
-    if (randomWord.includes(pressed) && !usedKeys.includes(pressed)) {
-        console.log("TRUE");
-        for (var i = 0; i < randomWord.length; i++) {
-            if (randomWord.charAt(i) === pressed) {
-                hiddenWord[i] = pressed;
-                document.getElementById("WORD").innerHTML = hiddenWord;
+    if (!usedKeys.includes(pressed)) {
+        if (randomWord.includes(pressed)) {
+            console.log("TRUE");
+            for (var i = 0; i < randomWord.length; i++) {
+                if (randomWord.charAt(i) === pressed) {
+                    hiddenWord[i] = pressed;
+                    document.getElementById("WORD").innerHTML = hiddenWord;
+                }
             }
         }
-    }
-    else {
-        console.log("FALSE");
-        if (guessCount > 1) guessCount--;
         else {
-            /*User Lost! Reset variables (except win) and play again*/
-            alert("You lost :c")
-            initializer();
+            console.log("FALSE");
+            if (guessCount > 1) guessCount--;
+            else {
+                /*User Lost! Reset variables (except win) and play again*/
+                initializer();
+            }
         }
+        usedKeys.push(pressed);
+        if (!hiddenWord.includes("_")) {
+            winCount++;
+            alert("You Win!");
+            initializer();
+        } 
+        updateElements();
     }
-    usedKeys.push(pressed);
-    if (!hiddenWord.includes("_")) {
-        winCount++;
-        alert("You Win!");
-        initializer();
-    } 
-    updateElements();
     
 };
 
