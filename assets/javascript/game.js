@@ -6,7 +6,7 @@
 
 //  List of potential words to use
 
-var potentialWords = [];
+var potentialWords = ["Alpha", "Beta", "Theta", "Kappa", "Omega"];
 
 // Wins variable //array
 
@@ -25,7 +25,8 @@ var usedKeys = [];
 
 // Initialize on fresh game
 // Display a new empty word
-
+var randomWord = potentialWords[Math.floor(Math.random() * potentialWords.length)];
+document.write(randomWord);
 
 //WHILE WORD-Boolean.includes(false)
 
