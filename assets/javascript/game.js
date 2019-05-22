@@ -93,6 +93,17 @@ function endGame() {
     }, 6000)
 }
 
+/**
+ *  
+ * @param str 
+ *      str is the input to check
+ * 
+ * The function checks whether a character is a letter
+ */
+function isLetter(str) {
+    return str.length === 1 && str.match(/[a-z]/i);
+}
+
 //Begin the game and show the user a fresh start
 initializer();
 updateElements();
@@ -102,7 +113,7 @@ updateElements();
 document.onkeypress = function (pressed) {
     //Filter out excess data, only use letter pressed
     pressed = pressed.key.toLowerCase();
-
+    if (!isLetter(pressed)) return;
     //If the letter has not been pressed yet
     if (!usedKeys.includes(pressed)) {
 
