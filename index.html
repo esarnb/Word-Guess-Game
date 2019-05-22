@@ -9,29 +9,30 @@
     <title>Word Guess Game</title>
 </head>
 <body>
-    <!-- Center -->
-    <h2>Welcome to Word Guess Game!</h2>
-
-    <!-- Box under title -->
-    <p>How to play: Press a key to guess the letter. You have 12 tries until its game over!</p>
-    <br>
-
-    <!-- Text under box (Begin everything when a key is pressed) -->
-    <p>Press any key to start!</p>
+    <div id="heading">
+        <h2 id="welcome">Welcome to Word Guess Game!</h2>
+        <p id="instructions">How to play: Press a key to guess the letter. You have 12 tries until its game over!</p>
+    </div>
     <br><br>
 
     <!-- Stats box-->
-    <br>
-    <p id="Wins">Wins: </p>
-    <br>
-    <p id="Guesses">Guesses left: </p>
-    <br>
-    <p id="Used">Keys Used: </p>
-    <br><br>
+    <div id="stats">
+        <br>
+            <p id="Wins">Wins: </p>
+        <br>
+            <p id="Guesses">Guesses left: </p>
+        <br>
+            <p id="Used">Keys Used: </p>
+        <br>
+    </div>
     
-    <!-- WORD -->
-    <p id="WORD"></p>
+    <br>
+        <p id="WORD"></p>
+    <br>
+
+    <br>
+        <h2 id="endPrompt"></h2>
+    <br>
     <script src="assets/javascript/game.js"></script>
-    
 </body>
 </html>
