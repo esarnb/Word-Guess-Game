@@ -21,6 +21,8 @@ var usedKeys;
  * a random word from the array potentialWords
  */
 var randomWord;
+var chem;
+var infoPrompt;
 
 /* Stat counters */
 var winCount = 0;
@@ -41,7 +43,9 @@ function initializer() {
     if (!awaiting) {
         //Get new Random Word
         // randomWord = potentialWords[Math.floor(Math.random() * potentialWords.length)].toLowerCase();
-        randomWord = getChemical().name;
+        chem = getChemical();
+        randomWord = chem.name.toLowerCase();
+        infoPrompt = ` The word was ${randomWord}. It's symbol is ${chem.symbol} with an atomic mass of ${chem.id}`;
         //Reset used keys to none
         usedKeys = [];
         //Reset counter for amount of tries
@@ -86,7 +90,7 @@ function endGame() {
         initializer();
         updateElements();
         for (let element of document.querySelectorAll('.hidden')) element.style.visibility = 'visible';
-    }, 3000)
+    }, 6000)
 }
 
 //Begin the game and show the user a fresh start
@@ -97,7 +101,7 @@ updateElements();
 /* Load in key logger*/
 document.onkeypress = function (pressed) {
     //Filter out excess data, only use letter pressed
-    pressed = pressed.key;
+    pressed = pressed.key.toLowerCase();
 
     //If the letter has not been pressed yet
     if (!usedKeys.includes(pressed)) {
@@ -131,12 +135,12 @@ document.onkeypress = function (pressed) {
         /** User found all the letters: increment wins, tell user, wait 3s to reset game and update. */
         if (!hiddenWord.includes("_") && !awaiting) {
             winCount++;
-            endPrompt.textContent = "You Win! The word was " + randomWord;
+            endPrompt.textContent = "You Win!" + infoPrompt;
             endGame();
         }
         else if (guessCount < 1 && !awaiting) {
             /*User Lost the round! Tell user for 3s, then reset variables (except wins) and play again*/
-            endPrompt.textContent = "You Lost :c The word was " + randomWord;
+            endPrompt.textContent = "You Lost :c" + infoPrompt;
             endGame();
         }
     }
