@@ -59,9 +59,29 @@ h2 {
     }
 }
 
-@media only screen and (max-width: 1320px) {
+
+@media only screen and (max-width: 1560px) {
+    #heading {
+        margin-top: 13%;
+    }
+}
+
+
+@media only screen and (max-width: 1500px) {
+    #heading {
+        margin-top: 14%;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
     #heading {
         margin-top: 16%;
+    }
+}
+
+@media only screen and (max-width: 1320px) {
+    #heading {
+        margin-top: 17%;
     }
 }
 
@@ -88,7 +108,7 @@ h2 {
 
 @media only screen and (max-width: 915px) {
     #heading {
-        margin-top: 26%;
+        margin-top: 25%;
     }
 }
 
