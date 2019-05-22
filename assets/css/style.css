@@ -1,3 +1,12 @@
-/* #endPrompt {
+h2 {
     font-size: x-large;
-} */
+}
+
+#welcome, #instructions, #WORD {
+    line-height: 10%;
+    padding: 5%;
+}
+
+#stats, #welcome, #instructions, #WORD, #endPrompt {
+    text-align: center;
+}
