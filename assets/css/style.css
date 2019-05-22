@@ -69,16 +69,10 @@ h2 {
 
 @media only screen and (max-width: 1500px) {
     #heading {
-        margin-top: 14%;
-    }
-}
-
-
-@media only screen and (max-width: 1450px) {
-    #heading {
         margin-top: 15%;
     }
 }
+
 
 @media only screen and (max-width: 1400px) {
     #heading {
@@ -158,7 +152,7 @@ h2 {
 }
 
 
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 560px) {
     * {
         visibility: hidden;
     }
