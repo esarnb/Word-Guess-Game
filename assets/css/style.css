@@ -52,3 +52,87 @@ h2 {
 #welcome, #instructions, #WORD, #endPrompt {
     text-align: center;
 }
+
+@media only screen {
+    body {
+        background-size: auto;
+    }
+}
+
+@media only screen and (max-width: 1320px) {
+    #heading {
+        margin-top: 16%;
+    }
+}
+
+
+@media only screen and (max-width: 1230px) {
+    #heading {
+        margin-top: 18%;
+    }
+}
+
+
+@media only screen and (max-width: 1100px) {
+    #heading {
+        margin-top: 20%;
+    }
+}
+
+@media only screen and (max-width: 980px) {
+    #heading {
+        margin-top: 22%;
+    }
+}
+
+
+@media only screen and (max-width: 915px) {
+    #heading {
+        margin-top: 26%;
+    }
+}
+
+
+@media only screen and (max-width: 850px) {
+    #heading {
+        margin-top: 26%;
+    }
+
+    #welcome {
+        padding: 1%
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #heading {
+        margin-top: 30%;
+    }
+
+    #welcome {
+        padding: 2%;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    #heading {
+        margin-top: 33%;
+    }
+
+    #welcome {
+        padding: 3%;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+    * {
+        line-height: 10px;
+    }
+}
+
+
+@media only screen and (max-width: 550px) {
+    * {
+        visibility: hidden;
+    }
+}
